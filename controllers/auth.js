@@ -4,33 +4,14 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
+const dbController = require('../controllers/db');
+const db = dbController.db;
+
 //import mysql and dotenv and initialize it
 const mysql = require('mysql');
 const dotenv = require('dotenv');
 dotenv.config({ path: './.env'});
 
-const db = mysql.createConnection({
-  host: process.env.DATABASE_HOST,
-  user: process.env.DATABASE_USER,
-  password: process.env.DATABASE_PASSWORD,
-  database: process.env.DATABASE
-});
-
-exports.db = db;
-
-var test = "testing purposes";
-
-db.connect( (err) => {
-  if(err) {
-     console.log(err);
-  } else {
-     console.log("MySQL connection established...");
-  }
-});
-
-exports.getUserData = (id) => {
-  console.log("test");
-}
 
 exports.register = (req, res) => {
 
