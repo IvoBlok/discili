@@ -3,15 +3,16 @@ const mysql = require('mysql');
 const dotenv = require('dotenv');
 dotenv.config({ path: './.env'});
 
+//Create the database connection + export
 const db = mysql.createConnection({
   host: process.env.DATABASE_HOST,
   user: process.env.DATABASE_USER,
   password: process.env.DATABASE_PASSWORD,
   database: process.env.DATABASE
 });
-
 exports.db = db;
 
+//Connect to the database
 db.connect( (err) => {
   if(err) {
      console.log(err);
@@ -19,6 +20,8 @@ db.connect( (err) => {
      console.log("MySQL connection established...");
   }
 });
+
+//#region database fetch functions
 
 exports.getUserData = async (id, callback) => {
   
@@ -37,3 +40,5 @@ exports.getUserData = async (id, callback) => {
     callback(results[0]);
   });
 }
+
+//#endregion

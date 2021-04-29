@@ -1,7 +1,5 @@
 
-//const dbController = require('../controllers/db');
-
-const jwt = require('jsonwebtoken');
+//#region importing relevant components and such
 const bcrypt = require('bcryptjs');
 
 const dbController = require('../controllers/db');
@@ -11,7 +9,9 @@ const db = dbController.db;
 const mysql = require('mysql');
 const dotenv = require('dotenv');
 dotenv.config({ path: './.env'});
+//#endregion
 
+//#region login/registration system database fetch functions
 
 exports.register = (req, res) => {
 
@@ -109,3 +109,5 @@ exports.logout = async (req, res) => {
   req.session.destroy();
   res.status(200).redirect("/login");
 }
+
+//#endregion
